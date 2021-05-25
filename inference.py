@@ -6,7 +6,6 @@ from data.helpers import cleaner
 from tensorflow.keras.preprocessing import sequence
 
 
-
 def start_model(model_path, tokenizer_path):
     print(f"\nModel Path: {model_path}")
     print(f"Tokenizer Path: {tokenizer_path}\n")
@@ -37,7 +36,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Select which model to load for inference.")
     parser.add_argument("-b", "--best", action="store_true", help='load the model with the best accuracy.')
-    parser.add_argument("-m", "--model", action="store_true", help='load the model with the best accuracy.')
+    parser.add_argument("-m", "--model", action="store_true", help='select which model to load.')
     args = parser.parse_args()
 
     checkpoint_path = "models/checkpoints.json"

@@ -8,7 +8,6 @@ from sklearn.model_selection import train_test_split
 from tensorflow.keras.layers import Dense, LSTM, Embedding
 
 
-
 def build_model(hp):
     output_dim = hp.Int("output_dim", min_value=32, max_value=512, step=16)
     input_unit = hp.Int("input_unit", min_value=32, max_value=512, step=16)
@@ -24,11 +23,7 @@ def build_model(hp):
                   metrics=['accuracy'])
     return model
 
-
-LOG_DIR = f"tuners/trial_model_{int(time.time())}"
-
 all_encoded_texts, all_labels = prepare_data(tokenizer_path=None)
-
 X_train, X_test, y_train, y_test = train_test_split(
     all_encoded_texts,
     all_labels,
@@ -42,7 +37,7 @@ if __name__ == "__main__":
         objective = "val_accuracy",
         max_trials = 20,
         executions_per_trial = 3,
-        directory = LOG_DIR,
+        directory = f"tuners/trial_model_{int(time.time())}",
         project_name = "news_classifier"
     )
 
