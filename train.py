@@ -12,7 +12,6 @@ from sklearn.model_selection import train_test_split
 gpu_devices = tf.config.experimental.list_physical_devices("GPU")
 if gpu_devices: tf.config.experimental.set_memory_growth(gpu_devices[0], True)
 
-INPUT_DIM = 260383
 INPUT_LENGTH = 500
 OUTPUT_DIM = 32
 INPUT_UNITS = 100
@@ -23,7 +22,7 @@ BATCH_SIZE = 64
 start_time = int(time.time())
 tokenizer_path = f"models/tokenizer_{start_time}.pickle"
 
-all_encoded_texts, all_labels = prepare_data(tokenizer_path)
+all_encoded_texts, all_labels, INPUT_DIM = prepare_data(tokenizer_path)
 X_train, X_test, y_train, y_test = train_test_split(
     all_encoded_texts,
     all_labels,

@@ -70,4 +70,4 @@ def prepare_data(tokenizer_path):
     one_hot_encoder = OneHotEncoder(sparse=False)
     all_labels = one_hot_encoder.fit_transform(all_labels)
 
-    return (all_encoded_texts, all_labels)
+    return (all_encoded_texts, all_labels, len(t)+1)
