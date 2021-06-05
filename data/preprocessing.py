@@ -10,12 +10,18 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 
 
 articles_col = BMediaDB().db["articles"]
+sun = BMediaDB().db["sun"]
 dataset_path = "data/dataset.csv"
 
 def get_data():
     articles = articles_col.find({}, {"title", "category", "body"})
+    sun_articles = sun.find({}, {"title", "category", "body"})
+    sun_df = pd.DataFrame(sun_articles)
+
     df = pd.DataFrame(articles)
-    df["body_joined"] = df.body.apply(lambda x: ' '.join(x))
+    df = df.append(sun_df)
+
+    df["body_joined"] = df.body.apply(lambda x: " ".join(x))
     df["title_body"] = df["title"] + ". " + df["body_joined"]
     del df["_id"]
     news = df[["category", "title_body"]]
@@ -33,11 +39,13 @@ def prepare_data(tokenizer_path):
     class_2 = news[news["category"] == "sport"]
     class_3 = news[news["category"] == "world-news"]
     class_4 = news[news["category"] == "report"]
+    class_5 = news[news["category"] == "lifestyle"]
 
     all_texts = np.append(class_0["title_body"], class_1["title_body"])
     all_texts = np.append(all_texts, class_2["title_body"])
     all_texts = np.append(all_texts, class_3["title_body"])
     all_texts = np.append(all_texts, class_4["title_body"])
+    all_texts = np.append(all_texts, class_5["title_body"])
 
     all_cleaned_texts = np.array([cleaner(text) for text in all_texts])
 
@@ -52,22 +60,24 @@ def prepare_data(tokenizer_path):
 
     all_encoded_texts = tokenizer.texts_to_sequences(all_cleaned_texts)
     all_encoded_texts = np.array(all_encoded_texts)
-    all_encoded_texts = sequence.pad_sequences(all_encoded_texts, maxlen=500) #, maxlen=40
+    all_encoded_texts = sequence.pad_sequences(all_encoded_texts, maxlen=500)
 
     labels_0 = np.array([0] * len(class_0))
     labels_1 = np.array([1] * len(class_1))
     labels_2 = np.array([2] * len(class_2))
     labels_3 = np.array([3] * len(class_3))
     labels_4 = np.array([4] * len(class_4))
+    labels_5 = np.array([5] * len(class_5))
 
     all_labels = np.append(labels_0, labels_1)
     all_labels = np.append(all_labels, labels_2)
     all_labels = np.append(all_labels, labels_3)
     all_labels = np.append(all_labels, labels_4)
+    all_labels = np.append(all_labels, labels_5)
 
     all_labels = all_labels[:, np.newaxis]
 
     one_hot_encoder = OneHotEncoder(sparse=False)
     all_labels = one_hot_encoder.fit_transform(all_labels)
 
-    return (all_encoded_texts, all_labels)
+    return (all_encoded_texts, all_labels, len(t)+1)

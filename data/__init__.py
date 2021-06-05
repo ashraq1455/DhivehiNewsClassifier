@@ -3,7 +3,7 @@ from configparser import ConfigParser
 
 
 config = ConfigParser()
-config.read("config.ini")
+config.read("config_dev.ini")
 host = config.get("DATABASE", "host")
 username = config.get("DATABASE", "username")
 password = config.get("DATABASE", "password")

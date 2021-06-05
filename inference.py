@@ -19,7 +19,7 @@ def start_model(model_path, tokenizer_path):
 
     return (model, tokenizer)
 
-categories = ["politics", "viyafaari", "sport", "world-news", "report"]
+categories = ["politics", "business", "sport", "world-news", "report", "lifestyle"]
 def preditct_news_topic(text):
     cleaned_text = cleaner(text)
     encoded_text = tokenizer.texts_to_sequences([cleaned_text])

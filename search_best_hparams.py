@@ -13,9 +13,9 @@ def build_model(hp):
     input_unit = hp.Int("input_unit", min_value=32, max_value=512, step=16)
     
     model = Sequential()
-    model.add(Embedding(input_dim=260383, output_dim=output_dim, input_length=500))
+    model.add(Embedding(input_dim=311697, output_dim=output_dim, input_length=500))
     model.add(LSTM(input_unit))
-    model.add(Dense(5, activation='sigmoid'))
+    model.add(Dense(6, activation='sigmoid'))
     
     hp_learning_rate = hp.Choice('learning_rate', values=[1e-2, 1e-3, 1e-4])
     model.compile(loss='categorical_crossentropy', 
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         build_model,
         objective = "val_accuracy",
         max_trials = 20,
-        executions_per_trial = 3,
+        executions_per_trial = 2,
         directory = f"tuners/trial_model_{int(time.time())}",
         project_name = "news_classifier"
     )
