@@ -23,7 +23,7 @@ def build_model(hp):
                   metrics=['accuracy'])
     return model
 
-all_encoded_texts, all_labels = prepare_data(tokenizer_path=None)
+all_encoded_texts, all_labels, INPUT_DIM = prepare_data(tokenizer_path=None)
 X_train, X_test, y_train, y_test = train_test_split(
     all_encoded_texts,
     all_labels,
