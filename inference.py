@@ -19,7 +19,7 @@ def start_model(model_path, tokenizer_path):
 
     return (model, tokenizer)
 
-categories = ["politics", "viyafaari", "sport", "world-news", "report"]
+categories = ["politics", "business", "sports", "world-news", "report"]
 def preditct_news_topic(text):
     cleaned_text = cleaner(text)
     encoded_text = tokenizer.texts_to_sequences([cleaned_text])
@@ -35,8 +35,8 @@ if __name__ == "__main__":
     from pprint import pprint
 
     parser = argparse.ArgumentParser(description="Select which model to load for inference.")
-    parser.add_argument("-b", "--best", action="store_true", help='load the model with the best accuracy.')
-    parser.add_argument("-m", "--model", action="store_true", help='select which model to load.')
+    parser.add_argument("-b", "--best", action="store_true", help="load the model with the best accuracy.")
+    parser.add_argument("-m", "--model", action="store_true", help="select which model to load.")
     args = parser.parse_args()
 
     checkpoint_path = "models/checkpoints.json"
