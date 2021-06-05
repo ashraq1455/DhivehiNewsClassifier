@@ -3,30 +3,18 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 from data.helpers import cleaner
-from data import BMediaDB
 from sklearn.preprocessing import OneHotEncoder
 from tensorflow.keras.preprocessing import sequence
 from tensorflow.keras.preprocessing.text import Tokenizer
 
 
-articles_col = BMediaDB().db["articles"]
 dataset_path = "data/dataset.csv"
-
-def get_data():
-    articles = articles_col.find({}, {"title", "category", "body"})
-    df = pd.DataFrame(articles)
-    df["body_joined"] = df.body.apply(lambda x: ' '.join(x))
-    df["title_body"] = df["title"] + ". " + df["body_joined"]
-    del df["_id"]
-    news = df[["category", "title_body"]]
-    news.to_csv(dataset_path, encoding="utf8")
-    return news
-
 def prepare_data(tokenizer_path):
     if Path(dataset_path).is_file():
         news = pd.read_csv(dataset_path, encoding="utf8")
     else:
-        news = get_data()
+        print("data\dataset.csv not found.")
+        quit()
     
     class_0 = news[news["category"] == "politics"]
     class_1 = news[news["category"] == "viyafaari"]
