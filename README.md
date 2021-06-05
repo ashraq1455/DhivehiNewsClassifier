@@ -7,7 +7,7 @@ Simple Keras model for classifying Dhivehi news topics based on article content.
 |<img width="1604" src="https://user-images.githubusercontent.com/59014721/120905066-390af680-c682-11eb-90d0-013fef84fa10.PNG">|
 
 ## Setup
-- Create a virtual environment (recommended)
+- Create a virtual environment with ```python3.8``` (recommended)
 - ```git clone https://github.com/ashraq1455/dhivehi-news-classifier.git```
 - ```pip install -r requirements.txt```
 - Run ```gdown --id 1aYSqY7jY7MAK_j1t0hRTf6R7QjvO_u1I``` to download the dataset (18.5 MB)
@@ -35,7 +35,7 @@ To search best hyperparameters for your dataset, specify ranges for ```output_di
 
 |name|file_id|tra_accuracy|val_accuracy|size|
 |----|----|----|----|----|
-|mvnews_classifier_1622907065|11Bm_h9PXKYyWlv3Rw_2vHMcNES0Zl1CT|99.75%|95.74%|87.5 MB|
+|mvnews_classifier_1622907065.zip|11Bm_h9PXKYyWlv3Rw_2vHMcNES0Zl1CT|99.75%|95.74%|87.5 MB|
 
 - To Download pre-trained models run ```gdown --id <file_id>```
 - Extract the file and move all content to ```models``` directory
