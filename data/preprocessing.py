@@ -25,6 +25,7 @@ def get_data():
     df["title_body"] = df["title"] + ". " + df["body_joined"]
     del df["_id"]
     news = df[["category", "title_body"]]
+    news = news.replace("\n", " ", regex=True)
     news.to_csv(dataset_path, encoding="utf8")
     return news
 
@@ -55,7 +56,7 @@ def prepare_data(tokenizer_path):
     print("word_index:", len(t))
 
     if tokenizer_path:
-        with open(tokenizer_path, 'wb') as handle:
+        with open(tokenizer_path, "wb") as handle:
             pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     all_encoded_texts = tokenizer.texts_to_sequences(all_cleaned_texts)
