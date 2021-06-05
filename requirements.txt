@@ -4,3 +4,4 @@ numpy==1.18.5
 dhivehi-nlp==1.0.13
 scikit-learn==0.24.2
 keras-tuner==1.0.2
+gdown==3.13.0
