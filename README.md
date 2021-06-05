@@ -1,6 +1,11 @@
 # DhivehiNewsClassifier
 Simple Keras model for classifying Dhivehi news topics based on article content. Inpired by [this article](https://becominghuman.ai/news-topic-classification-using-lstm-a1e8a38781fe) published on becominghuman.ai.
 
+| |
+|:-------------------------:|
+|<img width="1604" src="https://user-images.githubusercontent.com/59014721/120905053-1f69af00-c682-11eb-8f1a-08781b18e7d6.PNG">|
+|<img width="1604" src="https://user-images.githubusercontent.com/59014721/120905066-390af680-c682-11eb-90d0-013fef84fa10.PNG">|
+
 ## Setup
 - Create a virtual environment (recommended)
 - ```git clone https://github.com/ashraq1455/dhivehi-news-classifier.git```
