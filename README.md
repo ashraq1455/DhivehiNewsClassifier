@@ -1,5 +1,5 @@
 # DhivehiNewsClassifier
-Simple Keras model for classifying Dhivehi news topics based on article content. Inpired by [this article](https://becominghuman.ai/news-topic-classification-using-lstm-a1e8a38781fe) published on becominghuman.ai.
+Simple Keras model for classifying Dhivehi news topics based on article content. Inpired by [this article](https://becominghuman.ai/news-topic-classification-using-lstm-a1e8a38781fe) published on becominghuman.ai. Live demo available [here](https://mvnewsclassifier.baivaru.net/).
 
 | |
 |:-------------------------:|
@@ -37,8 +37,11 @@ To search best hyperparameters for your dataset, specify ranges for ```output_di
 |----|----|----|----|----|
 |mvnews_classifier_1622907065.zip|11Bm_h9PXKYyWlv3Rw_2vHMcNES0Zl1CT|99.75%|95.74%|87.5 MB|
 
-- To Download pre-trained models run ```gdown --id <file_id>```
+- To download pre-trained models run ```gdown --id <file_id>```
 - Extract the file and move all content to ```models``` directory
 - To run inference on the model run ```python inference.py```
 
 This model is trained using 33068 articles scrapped from vaguthu.mv. It can currently predict 5 categories: ```Politics, Business, Sports, World-News, Report```
+
+## Credits
+* [PhoenixAtom](https://github.com/PhoenixAtom) - Live demo website
